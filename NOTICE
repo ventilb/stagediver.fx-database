@@ -1,0 +1,39 @@
+  i-entwicklung.de stagediver.fx IEW Database extension
+  Copyright 2012-2014 Manuel Schulze <manuel_schulze@i-entwicklung.de>
+
+  This product includes or uses software developed by third party
+  developers.
+
+* stagediver.fx (https://github.com/qaware/stagediver.fx) is licensed under the
+  terms of the Apache 2.0 license.
+  Please refer to: https://github.com/qaware/stagediver.fx/blob/master/LICENSE
+
+* JUnit (https://github.com/junit-team/junit/blob/master/LICENSE.txt)
+  is licensed under the terms of the Eclipse Public License - v 1.0.
+
+* The groovy libraries (http://groovy.codehaus.org/) are licensed under the
+  terms of the Apache 2.0 license.
+  Please refer to: http://groovy.codehaus.org/License+Information
+
+* The java hamcrest library (http://code.google.com/p/hamcrest/) is licensed
+  under the terms of the New BSD license.
+  Please refer to: https://github.com/hamcrest/JavaHamcrest/blob/master/LICENSE.txt
+
+* Apache Felix (http://felix.apache.org/) and it's subprojects are licensed
+  under the terms of the Apache 2.0 license.
+  Please refer to: http://felix.apache.org/license.html
+
+* The OSGi libraries used in this project are licensed under the terms of the
+  Apache 2.0 license.
+
+* The Simple Logging Facade for Java - SLF4J (http://www.slf4j.org/) is
+  licensed under the terms of the MIT license.
+  Please refer to: http://slf4j.org/license.html
+
+* The PAX logging implementation is licensed under the terms of the Apache 2.0
+  license.
+  Please refer to: https://github.com/ops4j/org.ops4j.pax.logging/blob/master/LICENSE.txt
+
+* Log4j (http://logging.apache.org/log4j/1.2/) is licensed under the the
+  terms of the Apache 2.0 license.
+  Please refer to: http://logging.apache.org/log4j/1.2/license.html
