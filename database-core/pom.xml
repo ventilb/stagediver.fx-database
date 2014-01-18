@@ -45,6 +45,10 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -116,8 +120,9 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
+                        <Liquibase-Package>de.iew.stagediver.fx.database.services.impl</Liquibase-Package>
                         <Bundle-Activator>de.iew.stagediver.fx.osgi.DatabaseBundleActivator</Bundle-Activator>
-                        <Embed-Dependency>c3p0,hsqldb</Embed-Dependency>
+                        <Embed-Dependency>c3p0,hsqldb,liquibase-core,snakeyaml</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <Include-Resource>
                             {maven-resources}, {maven-dependencies}
@@ -133,13 +138,19 @@
                         -->
                         <Import-Package>
                             !javax.servlet.*,
+                            de.iew.stagediver.fx.database.liquibase.*,
                             de.iew.stagediver.fx.database.services.*,
                             javax.*,
                             org.osgi.framework.*,
                             org.slf4j.*,
-                            org.w3c.*
+                            org.w3c.*,
+                            org.xml.sax.*
                         </Import-Package>
-                        <Private-Package>de.iew.stagediver.fx.database.services.impl.*</Private-Package>
+                        <Private-Package>
+                            de.iew.stagediver.fx.database.liquibase.impl.*,
+                            de.iew.stagediver.fx.database.services.impl.*,
+                            liquibase.*,
+                        </Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

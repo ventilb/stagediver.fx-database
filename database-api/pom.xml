@@ -32,6 +32,13 @@
     <name>database-api</name>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
     <build>
         <resources>
@@ -53,7 +60,11 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Export-Package>de.iew.stagediver.fx.database.services.*</Export-Package>
+                        <Import-Package>org.osgi.*</Import-Package>
+                        <Export-Package>
+                            de.iew.stagediver.fx.database.services.*,
+                            de.iew.stagediver.fx.database.liquibase.*
+                        </Export-Package>
                     </instructions>
                 </configuration>
             </plugin>

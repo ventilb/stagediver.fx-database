@@ -118,6 +118,15 @@
                 <artifactId>c3p0</artifactId>
                 <version>0.9.1.2</version>
             </dependency>
+            <!--
+            | Liquibase für einfache Datenbank-Überarbeitungen.
+            -->
+            <dependency>
+                <!-- license: Apache 2.0 (http://www.liquibase.org/) -->
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>3.0.8</version>
+            </dependency>
 
             <!--
             | Logging

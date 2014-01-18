@@ -16,6 +16,10 @@
 
 package de.iew.stagediver.fx.osgi;
 
+import liquibase.osgi.OSGIPackageScanClassResolver;
+import liquibase.servicelocator.CustomResolverServiceLocator;
+import liquibase.servicelocator.PackageScanClassResolver;
+import liquibase.servicelocator.ServiceLocator;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -28,7 +32,8 @@ import org.osgi.framework.BundleContext;
 public class DatabaseBundleActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
-
+        final PackageScanClassResolver resolver = new OSGIPackageScanClassResolver(context.getBundle());
+        ServiceLocator.setInstance(new CustomResolverServiceLocator(resolver));
     }
 
     @Override
