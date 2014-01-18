@@ -80,7 +80,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.java.source.version>7</project.java.source.version>
         <project.java.target.version>7</project.java.target.version>
-        <project.license.include>${project.basedir}/LICENSE</project.license.include>
         <osgi.version>4.3.1</osgi.version>
     </properties>
 
