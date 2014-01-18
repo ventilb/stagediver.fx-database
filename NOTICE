@@ -37,3 +37,21 @@
 * Log4j (http://logging.apache.org/log4j/1.2/) is licensed under the the
   terms of the Apache 2.0 license.
   Please refer to: http://logging.apache.org/log4j/1.2/license.html
+
+* The HyperSQL (http://hsqldb.org/) is licensed under it's own BSD based
+  license.
+  Please refer to: http://hsqldb.org/web/hsqlLicense.html
+
+* The c3p0 connection pooling library (http://www.mchange.com/projects/c3p0/)
+  is licensed under the terms of LGPL v2.1 or the Eclipse Public License v1.0
+  Please refer to: http://www.mchange.com/projects/c3p0/
+
+* The liquibase database migration framework (http://www.liquibase.org) is
+  licensed under the terms of the Apache 2.0 license.
+  Please refer to: http://www.liquibase.org/faq.html
+
+* The class liquibase.osgi.OSGIPackageScanClassResolver included in this
+  software was taken from the liquibase-osgi package
+  (https://github.com/liquibase/liquibase/tree/master/liquibase-osgi). This
+  package was initially developed by Sam Hendley https://github.com/samhendley
+  and is licensed under the terms of the Apache 2.0 license.

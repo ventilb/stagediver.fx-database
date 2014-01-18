@@ -120,6 +120,8 @@
             </dependency>
             <!--
             | Liquibase für einfache Datenbank-Überarbeitungen.
+            |
+            | see http://www.liquibase.org/
             -->
             <dependency>
                 <!-- license: Apache 2.0 (http://www.liquibase.org/) -->
@@ -138,18 +140,6 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>1.7.5</version>
-            </dependency>
-            <dependency>
-                <!-- license: Apache 2.0 (https://github.com/ops4j/org.ops4j.pax.logging/blob/master/LICENSE.txt) -->
-                <groupId>org.ops4j.pax.logging</groupId>
-                <artifactId>pax-logging-api</artifactId>
-                <version>1.7.1</version>
-            </dependency>
-            <dependency>
-                <!-- license: Apache 2.0 (https://github.com/ops4j/org.ops4j.pax.logging/blob/master/LICENSE.txt) -->
-                <groupId>org.ops4j.pax.logging</groupId>
-                <artifactId>pax-logging-service</artifactId>
-                <version>1.7.1</version>
             </dependency>
 
             <!--
