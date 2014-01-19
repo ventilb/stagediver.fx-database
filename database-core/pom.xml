@@ -38,6 +38,11 @@
         </dependency>
 
         <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
         </dependency>
@@ -112,7 +117,7 @@
                     <instructions>
                         <Liquibase-Package>de.iew.stagediver.fx.database.services.impl</Liquibase-Package>
                         <Bundle-Activator>de.iew.stagediver.fx.osgi.DatabaseBundleActivator</Bundle-Activator>
-                        <Embed-Dependency>c3p0,hsqldb,liquibase-core,snakeyaml</Embed-Dependency>
+                        <Embed-Dependency>c3p0,hsqldb,liquibase-core,snakeyaml,commons-lang</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <Include-Resource>
                             {maven-resources}, {maven-dependencies}
@@ -131,7 +136,7 @@
                             de.iew.stagediver.fx.database.liquibase.*,
                             de.iew.stagediver.fx.database.services.*,
                             javax.*,
-                            org.osgi.framework.*,
+                            org.osgi.*,
                             org.slf4j.*,
                             org.w3c.*,
                             org.xml.sax.*

@@ -29,6 +29,11 @@ import java.sql.Connection;
 public interface ConnectionService {
 
     /**
+     * The key used to configure the db provider class.
+     */
+    public static final String DB_PROVIDER_CLASS = ConnectionService.class.getName() + ".DB_PROVIDER_CLASS";
+
+    /**
      * Checkout of a connection to the build in database.
      *
      * @param databaseName the database name
