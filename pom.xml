@@ -32,7 +32,7 @@
     <url>https://github.com/ventilb/stagediver.fx-eventbus</url>
     <description>
         The stagediver.fx - IEW Database module extends the stagediver.fx RCP
-        platform with an database module. This module can be used to persist
+        platform with a database module. This module can be used to persist
         application data.
     </description>
 
@@ -102,7 +102,7 @@
                 <artifactId>commons-lang</artifactId>
                 <version>2.6</version>
             </dependency>
-            
+
             <!--
             | HyperSQL
             |
