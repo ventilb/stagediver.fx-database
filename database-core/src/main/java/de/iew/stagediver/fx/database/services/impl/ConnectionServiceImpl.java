@@ -52,7 +52,7 @@ import java.util.Set;
 @Service(value = {ConnectionService.class, ManagedService.class})
 public class ConnectionServiceImpl implements ConnectionService, ManagedService {
 
-    private static Logger log = LoggerFactory.getLogger(ConnectionServiceImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(ConnectionServiceImpl.class);
 
     public static final String PID = ConnectionService.class.getName();
 
