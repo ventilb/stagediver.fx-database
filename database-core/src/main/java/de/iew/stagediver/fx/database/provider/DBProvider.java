@@ -16,8 +16,6 @@
 
 package de.iew.stagediver.fx.database.provider;
 
-import org.osgi.service.cm.ConfigurationException;
-
 import java.util.Dictionary;
 
 /**
@@ -40,9 +38,9 @@ public interface DBProvider {
     /**
      * Verifies that this db provider was successfully configured and is ready to use.
      *
-     * @throws ConfigurationException thrown is any property is not in an expected state
+     * @throws DBProviderConfigurationException thrown is any property is not in an expected state
      */
-    public void verify() throws ConfigurationException;
+    public void verify() throws DBProviderConfigurationException;
 
     /**
      * Creates the database url to connect to the configured database system.

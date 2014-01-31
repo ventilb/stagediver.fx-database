@@ -17,6 +17,7 @@
 package de.iew.stagediver.fx.database.provider.impl;
 
 import de.iew.stagediver.fx.database.provider.DBProvider;
+import de.iew.stagediver.fx.database.provider.DBProviderConfigurationException;
 import org.apache.commons.lang.StringUtils;
 import org.osgi.service.cm.ConfigurationException;
 
@@ -45,19 +46,19 @@ public class HSQLDBProvider implements DBProvider {
     }
 
     @Override
-    public void verify() throws ConfigurationException {
+    public void verify() throws DBProviderConfigurationException {
         if (StringUtils.isBlank(this.databasePath)) {
-            throw new ConfigurationException(DATABASE_PATH, "The property can't be empty");
+            throw new DBProviderConfigurationException(DATABASE_PATH, "The property can't be empty");
         }
 
         if (StringUtils.isBlank(this.databasePath)) {
-            throw new ConfigurationException(DRIVER_CLASS, "The property can't be empty");
+            throw new DBProviderConfigurationException(DRIVER_CLASS, "The property can't be empty");
         }
 
         File databasePathTest = new File(this.databasePath);
 
         if (!(databasePathTest.isDirectory() && databasePathTest.canWrite())) {
-            throw new ConfigurationException(DATABASE_PATH, "The path is not a directory or not writeable");
+            throw new DBProviderConfigurationException(DATABASE_PATH, "The path is not a directory or not writeable");
         }
     }
 

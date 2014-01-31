@@ -44,8 +44,7 @@ public interface LiquibaseService {
     public void runLiquibase(String changelog, ResourceAccessor resourceAccessor, Connection connection, String... liquibaseContexts) throws LiquibaseServiceException;
 
     /**
-     * Returns a new {@link de.iew.stagediver.fx.database.liquibase.ResourceAccessor} instance for the specified OSGi
-     * bundle.
+     * Returns a new {@link ResourceAccessor} instance for the specified OSGi bundle.
      * <p>
      * The resource accessor is required to access changelog files from different bundles.
      * </p>
@@ -54,4 +53,11 @@ public interface LiquibaseService {
      * @return the resource accessor instance
      */
     public ResourceAccessor newBundleResourceAccessor(BundleContext context);
+
+    /**
+     * Returns a new {@link ResourceAccessor} to access the resources from the classpath of the current class loader.
+     *
+     * @return the resource accessor instance
+     */
+    public ResourceAccessor newClasspathResourceAccessor();
 }

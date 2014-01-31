@@ -16,6 +16,7 @@
 
 package de.iew.stagediver.fx.database.provider.impl
 
+import de.iew.stagediver.fx.database.provider.DBProviderConfigurationException
 import org.osgi.service.cm.ConfigurationException
 
 import static org.hamcrest.CoreMatchers.is
@@ -40,7 +41,11 @@ class HSQLDBProviderTest extends GroovyTestCase {
         def hsqldbProvider = new HSQLDBProvider()
         hsqldbProvider.configure(properties)
 
-        hsqldbProvider.verify()
+        try {
+            hsqldbProvider.verify()
+        } catch (DBProviderConfigurationException e) {
+            e.printStackTrace()
+        }
 
         // Test auswerten
         assertThat hsqldbProvider.getDatabasePath(), is(System.getProperty("java.io.tmpdir"))
@@ -60,7 +65,11 @@ class HSQLDBProviderTest extends GroovyTestCase {
         hsqldbProvider.configure(properties);
 
         shouldFail(ConfigurationException.class, {
-            hsqldbProvider.verify()
+            try {
+                hsqldbProvider.verify()
+            } catch (DBProviderConfigurationException e) {
+                e.printStackTrace()
+            }
         })
     }
 

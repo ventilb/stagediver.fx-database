@@ -18,6 +18,7 @@ package de.iew.stagediver.fx.database.services.impl;
 
 import de.iew.stagediver.fx.database.liquibase.ResourceAccessor;
 import de.iew.stagediver.fx.database.liquibase.impl.BundleResourceAccessorImpl;
+import de.iew.stagediver.fx.database.liquibase.impl.ClasspathResourceAccessorImpl;
 import de.iew.stagediver.fx.database.services.LiquibaseService;
 import de.iew.stagediver.fx.database.services.exception.LiquibaseServiceException;
 import liquibase.Liquibase;
@@ -25,8 +26,6 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
 import org.osgi.framework.BundleContext;
 
 import java.sql.Connection;
@@ -37,8 +36,6 @@ import java.sql.Connection;
  * @author <a href="mailto:manuel_schulze@i-entwicklung.de">Manuel Schulze</a>
  * @since 16.01.14 - 22:51
  */
-@Component
-@Service
 public class LiquibaseServiceImpl implements LiquibaseService {
 
     // Geht leider mit Liquibase nicht. Wir müssen den ResourceAccessor bei jedem Methodenaufruf mitschleifen, da
@@ -68,6 +65,11 @@ public class LiquibaseServiceImpl implements LiquibaseService {
     @Override
     public ResourceAccessor newBundleResourceAccessor(BundleContext context) {
         return new BundleResourceAccessorImpl(context);
+    }
+
+    @Override
+    public ResourceAccessor newClasspathResourceAccessor() {
+        return new ClasspathResourceAccessorImpl();
     }
 
     public liquibase.resource.ResourceAccessor resolveAccessor(ResourceAccessor resourceAccessor) throws LiquibaseServiceException {

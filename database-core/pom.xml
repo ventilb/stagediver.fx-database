@@ -19,14 +19,14 @@
     <parent>
         <artifactId>database</artifactId>
         <groupId>de.iew.stagediver.fx</groupId>
-        <version>0.1.0-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.iew.stagediver.fx</groupId>
     <artifactId>database-core</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>database-core</name>
@@ -59,6 +59,15 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>de.qaware.stagediver.fx</groupId>
+            <artifactId>lookup</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.qaware.stagediver.fx</groupId>
+            <artifactId>platform-non-osgi</artifactId>
         </dependency>
 
         <dependency>
@@ -142,6 +151,9 @@
                             org.xml.sax.*
                         </Import-Package>
                         <Private-Package>
+                            de.iew.stagediver.fx.database.nonosgi.*,
+                            de.iew.stagediver.fx.database.provider.*,
+                            de.iew.stagediver.fx.database.osgi.*,
                             de.iew.stagediver.fx.database.liquibase.impl.*,
                             de.iew.stagediver.fx.database.services.impl.*,
                             liquibase.*,

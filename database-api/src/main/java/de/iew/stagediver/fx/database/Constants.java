@@ -14,29 +14,21 @@
  * limitations under the License.
  */
 
-package de.iew.stagediver.fx.database.services;
+package de.iew.stagediver.fx.database;
 
-import de.iew.stagediver.fx.database.services.exception.ConnectException;
-
-import java.sql.Connection;
+import de.iew.stagediver.fx.database.services.ConnectionService;
 
 /**
- * Specifies a service interface to implement services for obtaining connections to databases.
+ * The public constants required to access and configure certain levels of the database framework.
  *
  * @author <a href="mailto:manuel_schulze@i-entwicklung.de">Manuel Schulze</a>
- * @since 17.01.14 - 22:38
+ * @since 30.01.14 - 22:25
  */
-public interface ConnectionService {
+public interface Constants {
 
     /**
-     * Checkout of a connection to the build in database.
-     *
-     * @param databaseName the database name
-     * @param username     the username
-     * @param password     the password
-     * @return the connection
-     * @throws ConnectException if the connect failed
+     * The key used to configure the db provider class.
      */
-    public Connection checkoutBuildInDatabaseConnection(final String databaseName, final String username, final String password) throws ConnectException;
+    public static final String DB_PROVIDER_CLASS = ConnectionService.class.getName() + ".DB_PROVIDER_CLASS";
 
 }

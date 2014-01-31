@@ -1,8 +1,8 @@
-# stagediver.fx IEW Database - Database bundle to the stagediver.fx RCP platform
+# stagediver.fx IEW Database
 This project adds the ability to work with databases in your stagediver.fx projects. It is based on the [stagediver.fx](https://github.com/qaware/stagediver.fx) project.
 
 ## Introduction
-This project introduces the additional features to the stagediver.fx platform:
+This project introduces additional features to the stagediver.fx platform:
 
 - Connection service to manage connections to different database systems
 - Build in [HyperSQL](http://hsqldb.org/) for rapid development
