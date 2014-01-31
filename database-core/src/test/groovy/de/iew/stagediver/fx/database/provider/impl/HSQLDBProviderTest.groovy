@@ -64,12 +64,8 @@ class HSQLDBProviderTest extends GroovyTestCase {
         def hsqldbProvider = new HSQLDBProvider()
         hsqldbProvider.configure(properties);
 
-        shouldFail(ConfigurationException.class, {
-            try {
-                hsqldbProvider.verify()
-            } catch (DBProviderConfigurationException e) {
-                e.printStackTrace()
-            }
+        shouldFail(DBProviderConfigurationException.class, {
+            hsqldbProvider.verify()
         })
     }
 
