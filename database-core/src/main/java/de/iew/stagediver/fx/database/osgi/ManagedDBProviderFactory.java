@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package de.iew.stagediver.fx.osgi;
+package de.iew.stagediver.fx.database.osgi;
 
 import de.iew.stagediver.fx.database.provider.AbstractDBProviderFactory;
 import de.iew.stagediver.fx.database.provider.DBProvider;
 import de.iew.stagediver.fx.database.provider.DBProviderFactory;
 import de.iew.stagediver.fx.database.provider.DBProviderFactoryException;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.cm.ConfigurationException;
@@ -44,18 +42,16 @@ public class ManagedDBProviderFactory extends AbstractDBProviderFactory implemen
 
     public static final String PID = DBProviderFactory.class.getName();
 
-    private BundleContext bundleContext;
+    private final ConfigurationAdmin configurationAdmin;
 
-    public ManagedDBProviderFactory(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
+    public ManagedDBProviderFactory(final ConfigurationAdmin configurationAdmin) {
+        this.configurationAdmin = configurationAdmin;
     }
 
     @Override
     public DBProvider newDBProvider() throws DBProviderFactoryException {
         try {
-            final ServiceReference<ConfigurationAdmin> sr = this.bundleContext.getServiceReference(ConfigurationAdmin.class);
-            final ConfigurationAdmin configurationAdmin = this.bundleContext.getService(sr);
-            final Configuration config = configurationAdmin.getConfiguration(PID);
+            final Configuration config = this.configurationAdmin.getConfiguration(PID);
 
             return createDBProvider(config.getProperties());
         } catch (Exception e) {

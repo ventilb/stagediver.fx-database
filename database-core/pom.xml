@@ -35,24 +35,29 @@
         <dependency>
             <groupId>de.iew.stagediver.fx</groupId>
             <artifactId>database-api</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -64,10 +69,12 @@
         <dependency>
             <groupId>de.qaware.stagediver.fx</groupId>
             <artifactId>lookup</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>de.qaware.stagediver.fx</groupId>
             <artifactId>platform-non-osgi</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -125,7 +132,7 @@
                 <configuration>
                     <instructions>
                         <Liquibase-Package>de.iew.stagediver.fx.database.services.impl</Liquibase-Package>
-                        <Bundle-Activator>de.iew.stagediver.fx.osgi.DatabaseBundleActivator</Bundle-Activator>
+                        <Bundle-Activator>de.iew.stagediver.fx.database.osgi.DatabaseBundleActivator</Bundle-Activator>
                         <Embed-Dependency>c3p0,hsqldb,liquibase-core,snakeyaml,commons-lang</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
                         <Include-Resource>
@@ -142,14 +149,23 @@
                         -->
                         <Import-Package>
                             !javax.servlet.*,
-                            de.iew.stagediver.fx.database.liquibase.*,
-                            de.iew.stagediver.fx.database.services.*,
+                            !com.mchange.v2.c3p0.*,
+                            !javax.inject.*,
+                            de.iew.stagediver.fx.database,
+                            de.iew.stagediver.fx.database.services,
+                            de.iew.stagediver.fx.database.services.exception,
+                            de.iew.stagediver.fx.database.liquibase,
                             javax.*,
                             org.osgi.*,
                             org.slf4j.*,
                             org.w3c.*,
                             org.xml.sax.*
                         </Import-Package>
+                        <!--<Export-Package>-->
+                            <!--de.iew.stagediver.fx.database,-->
+                            <!--de.iew.stagediver.fx.database.services.*,-->
+                            <!--de.iew.stagediver.fx.database.liquibase.*-->
+                        <!--</Export-Package>-->
                         <Private-Package>
                             de.iew.stagediver.fx.database.nonosgi.*,
                             de.iew.stagediver.fx.database.provider.*,

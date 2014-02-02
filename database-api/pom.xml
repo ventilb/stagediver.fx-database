@@ -62,9 +62,10 @@
                     <instructions>
                         <Import-Package>org.osgi.*</Import-Package>
                         <Export-Package>
-                            de.iew.stagediver.fx.database.*,
-                            de.iew.stagediver.fx.database.services.*,
-                            de.iew.stagediver.fx.database.liquibase.*
+                            de.iew.stagediver.fx.database,
+                            de.iew.stagediver.fx.database.services,
+                            de.iew.stagediver.fx.database.services.exception,
+                            de.iew.stagediver.fx.database.liquibase
                         </Export-Package>
                     </instructions>
                 </configuration>
