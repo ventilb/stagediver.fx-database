@@ -23,6 +23,7 @@ import de.iew.stagediver.fx.database.services.ConnectionService;
 import de.iew.stagediver.fx.database.services.exception.ConnectException;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
@@ -37,6 +38,7 @@ import java.util.Set;
  * @author <a href="mailto:manuel_schulze@i-entwicklung.de">Manuel Schulze</a>
  * @since 17.01.14 - 22:38
  */
+@Singleton
 public class ConnectionServiceImpl implements ConnectionService {
 
     // TODO spezielle Registry für die Connections bauen

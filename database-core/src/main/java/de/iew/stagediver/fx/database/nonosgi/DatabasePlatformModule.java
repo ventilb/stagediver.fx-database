@@ -24,7 +24,6 @@ import de.iew.stagediver.fx.database.services.impl.LiquibaseServiceImpl;
 import de.qaware.sdfx.nonosgi.PlatformModule;
 
 import java.util.Dictionary;
-import java.util.Hashtable;
 
 /**
  * Implements a Stagediver FX platform module to use the database framework in non OSGi applications.
@@ -37,7 +36,7 @@ public class DatabasePlatformModule extends PlatformModule {
     private final Dictionary<String, ?> dbProviderConfiguration;
 
     public DatabasePlatformModule() {
-        this(new Hashtable<String, Object>());
+        this(null);
     }
 
     public DatabasePlatformModule(final Dictionary<String, ?> dbProviderConfiguration) {

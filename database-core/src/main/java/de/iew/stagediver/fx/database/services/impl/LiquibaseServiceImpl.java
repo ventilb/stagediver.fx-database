@@ -28,6 +28,7 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import org.osgi.framework.BundleContext;
 
+import javax.inject.Singleton;
 import java.sql.Connection;
 
 /**
@@ -36,6 +37,7 @@ import java.sql.Connection;
  * @author <a href="mailto:manuel_schulze@i-entwicklung.de">Manuel Schulze</a>
  * @since 16.01.14 - 22:51
  */
+@Singleton
 public class LiquibaseServiceImpl implements LiquibaseService {
 
     // Geht leider mit Liquibase nicht. Wir müssen den ResourceAccessor bei jedem Methodenaufruf mitschleifen, da

@@ -19,14 +19,14 @@
     <parent>
         <artifactId>database</artifactId>
         <groupId>de.iew.stagediver.fx</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.iew.stagediver.fx</groupId>
     <artifactId>database-core</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>database-core</name>
