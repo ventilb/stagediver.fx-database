@@ -20,7 +20,7 @@
 
     <groupId>de.iew.stagediver.fx</groupId>
     <artifactId>database</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <modules>
         <module>database-api</module>
         <module>database-core</module>
@@ -90,12 +90,12 @@
             <dependency>
                 <groupId>de.iew.stagediver.fx</groupId>
                 <artifactId>database-api</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>1.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>de.iew.stagediver.fx</groupId>
                 <artifactId>database-core</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
+                <version>1.0.2-SNAPSHOT</version>
             </dependency>
 
             <dependency>
