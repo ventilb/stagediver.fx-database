@@ -17,6 +17,7 @@
 package de.iew.stagediver.fx.database.services;
 
 import de.iew.stagediver.fx.database.services.exception.ConnectException;
+import de.iew.stagediver.fx.database.services.exception.ConnectionReleaseException;
 
 import java.sql.Connection;
 
@@ -37,6 +38,13 @@ public interface ConnectionService {
      * @return the connection
      * @throws ConnectException if the connect failed
      */
-    public Connection checkoutBuildInDatabaseConnection(final String databaseName, final String username, final String password) throws ConnectException;
+    public Connection checkoutBuildInDatabaseConnection(String databaseName, String username, String password) throws ConnectException;
 
+    /**
+     * Releases any associated resources to the specified connection and close the connection to the database.
+     *
+     * @param connection the connection to release
+     * @throws ConnectionReleaseException in case the connection was not checked out or could not be released
+     */
+    public void releaseConnection(Connection connection) throws ConnectionReleaseException;
 }
