@@ -19,8 +19,6 @@ package de.iew.stagediver.fx.database.provider.impl;
 import de.iew.stagediver.fx.database.provider.DBProvider;
 import de.iew.stagediver.fx.database.provider.DBProviderConfigurationException;
 import org.apache.commons.lang.StringUtils;
-import org.osgi.service.cm.ConfigurationException;
-import sun.plugin.javascript.navig.Array;
 
 import java.io.File;
 import java.util.Arrays;
