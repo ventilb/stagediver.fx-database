@@ -54,6 +54,7 @@ public abstract class AbstractDBProviderFactory implements DBProviderFactory {
 
     protected DBProvider createDefaultDBProvider() throws DBProviderConfigurationException {
         final Hashtable<String, String> config = new Hashtable<>();
+        config.put(HSQLDBProvider.DATABASE_BACKEND, "file");
         config.put(Constants.DB_PROVIDER_CLASS, HSQLDBProvider.class.getName());
         config.put(HSQLDBProvider.DATABASE_PATH, System.getProperty("java.io.tmpdir"));
         config.put(HSQLDBProvider.DRIVER_CLASS, "org.hsqldb.jdbcDriver");

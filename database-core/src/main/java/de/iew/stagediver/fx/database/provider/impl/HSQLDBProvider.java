@@ -20,9 +20,13 @@ import de.iew.stagediver.fx.database.provider.DBProvider;
 import de.iew.stagediver.fx.database.provider.DBProviderConfigurationException;
 import org.apache.commons.lang.StringUtils;
 import org.osgi.service.cm.ConfigurationException;
+import sun.plugin.javascript.navig.Array;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Dictionary;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Implements a database provider for a HSQLDB database.
@@ -32,8 +36,19 @@ import java.util.Dictionary;
  */
 public class HSQLDBProvider implements DBProvider {
 
+    public static final String DATABASE_BACKEND = "hsqldb.database.backend";
     public static final String DATABASE_PATH = "hsqldb.database.path";
     public static final String DRIVER_CLASS = "hsqldb.driver.class";
+
+    /**
+     * The supported HSQLDB backends (storage engines).
+     *
+     * @see <a href="http://hsqldb.org/doc/guide/dbproperties-chapt.html">http://hsqldb.org/doc/guide/dbproperties-chapt.html</a>
+     */
+    // , "res", "hsql", "hsqls", "http", "https" currently not supported. Requires configuration of host and port or resource path
+    protected static final Set<String> SUPPORTED_HSQLDB_BACKENDS = new HashSet<>(Arrays.asList("file", "mem"));
+
+    private String databaseBackend;
 
     private String databasePath;
 
@@ -41,29 +56,25 @@ public class HSQLDBProvider implements DBProvider {
 
     @Override
     public void configure(Dictionary<String, ?> properties) {
+        // We don't predefine any defaults here. It's up to the factory to create and initialise the provider in the
+        // correct way.
+        this.databaseBackend = (String) properties.get(DATABASE_BACKEND);
         this.databasePath = (String) properties.get(DATABASE_PATH);
         this.driverClass = (String) properties.get(DRIVER_CLASS);
     }
 
     @Override
     public void verify() throws DBProviderConfigurationException {
-        if (StringUtils.isBlank(this.databasePath)) {
-            throw new DBProviderConfigurationException(DATABASE_PATH, "The property can't be empty");
-        }
+        validateConfiguredDatabaseBackend();
+        validateConfiguredDatabasePath();
 
-        if (StringUtils.isBlank(this.databasePath)) {
+        if (StringUtils.isBlank(this.driverClass)) {
             throw new DBProviderConfigurationException(DRIVER_CLASS, "The property can't be empty");
-        }
-
-        File databasePathTest = new File(this.databasePath);
-
-        if (!(databasePathTest.isDirectory() && databasePathTest.canWrite())) {
-            throw new DBProviderConfigurationException(DATABASE_PATH, "The path is not a directory or not writeable");
         }
     }
 
     @Override
-    public String createDatabaseConnectionUrl(String catalogName) {
+    public String createDatabaseConnectionUrl(final String catalogName) {
         if (StringUtils.isBlank(catalogName)) {
             throw new IllegalArgumentException("catalogName can't be empty");
         }
@@ -72,7 +83,41 @@ public class HSQLDBProvider implements DBProvider {
             this.databasePath = this.databasePath + File.separator;
         }
 
-        return String.format("jdbc:hsqldb:file:%s%s", this.databasePath, catalogName);
+        return String.format("jdbc:hsqldb:%s:%s%s", this.databaseBackend, this.databasePath, catalogName);
+    }
+
+    public boolean isSupportedHsqlBackend(final String hsqlBackendToTest) {
+        return StringUtils.isNotBlank(hsqlBackendToTest) && SUPPORTED_HSQLDB_BACKENDS.contains(hsqlBackendToTest);
+    }
+
+    /**
+     * Validates the configured database backend. The database backend is valid if it is listed in the
+     * {@link #SUPPORTED_HSQLDB_BACKENDS} set. This method does not check backend specific configuration.
+     *
+     * @throws DBProviderConfigurationException if the validation failed
+     */
+    public void validateConfiguredDatabaseBackend() throws DBProviderConfigurationException {
+        if (!isSupportedHsqlBackend(this.databaseBackend)) {
+            throw new DBProviderConfigurationException(DATABASE_BACKEND, "The database backend is not supported by this provider implementation");
+        }
+    }
+
+    /**
+     * Validates the configured database file system path. Does not have any effect if a path is not configured. If
+     * configured the path must be a writeable directory.
+     *
+     * @throws DBProviderConfigurationException if the validation failed
+     */
+    public void validateConfiguredDatabasePath() throws DBProviderConfigurationException {
+        // The database path could also be reused for the res-backend but then requires a backend specific validation
+        // which is not yet implemented.
+        if (StringUtils.isNotBlank(this.databasePath)) {
+            File databasePathTest = new File(this.databasePath);
+
+            if (!(databasePathTest.isDirectory() && databasePathTest.canWrite())) {
+                throw new DBProviderConfigurationException(DATABASE_PATH, "The path is not a directory or not writeable");
+            }
+        }
     }
 
     public String getDatabasePath() {
