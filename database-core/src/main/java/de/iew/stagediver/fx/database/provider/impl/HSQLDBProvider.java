@@ -77,11 +77,22 @@ public class HSQLDBProvider implements DBProvider {
             throw new IllegalArgumentException("catalogName can't be empty");
         }
 
-        if (!this.databasePath.endsWith(File.separator)) {
-            this.databasePath = this.databasePath + File.separator;
+        final String databasePath = getPreparedDatabasePathForConnectionUrl();
+        return String.format("jdbc:hsqldb:%s:%s%s", this.databaseBackend, databasePath, catalogName);
+    }
+
+    protected String getPreparedDatabasePathForConnectionUrl() {
+        String preparedDatabasePath = "";
+
+        if (StringUtils.isNotBlank(this.databasePath)) {
+            preparedDatabasePath = this.databasePath;
+
+            if (!preparedDatabasePath.endsWith(File.separator)) {
+                preparedDatabasePath = preparedDatabasePath + File.separator;
+            }
         }
 
-        return String.format("jdbc:hsqldb:%s:%s%s", this.databaseBackend, this.databasePath, catalogName);
+        return preparedDatabasePath;
     }
 
     public boolean isSupportedHsqlBackend(final String hsqlBackendToTest) {
