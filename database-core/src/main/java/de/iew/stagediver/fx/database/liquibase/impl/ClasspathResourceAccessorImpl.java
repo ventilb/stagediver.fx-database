@@ -18,6 +18,10 @@ package de.iew.stagediver.fx.database.liquibase.impl;
 
 import de.iew.stagediver.fx.database.liquibase.ResourceAccessor;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.apache.commons.lang.StringUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Implements a resource accessor to access liquibase resources through the class loader.
@@ -26,4 +30,24 @@ import liquibase.resource.ClassLoaderResourceAccessor;
  * @since 30.01.14 - 23:42
  */
 public class ClasspathResourceAccessorImpl extends ClassLoaderResourceAccessor implements ResourceAccessor {
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * This method is overloaded to strip of an {@code /}-characters from the beginning of {@code file}.
+     * </p>
+     *
+     * @param file the path to the resource
+     * @return an input stream to the resource
+     * @throws IOException if an io error occured
+     */
+    @Override
+    public InputStream getResourceAsStream(final String file) throws IOException {
+        if (file == null) {
+            return null;
+        }
+
+        final String strippedFilename = StringUtils.stripStart(file, "/");
+        return super.getResourceAsStream(strippedFilename);
+    }
 }
