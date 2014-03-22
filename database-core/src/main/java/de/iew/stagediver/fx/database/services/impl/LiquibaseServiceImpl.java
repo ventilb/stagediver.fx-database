@@ -26,6 +26,7 @@ import liquibase.database.Database;
 import liquibase.database.DatabaseFactory;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
+import org.apache.commons.lang.StringUtils;
 import org.osgi.framework.BundleContext;
 
 import javax.inject.Singleton;
@@ -51,6 +52,11 @@ public class LiquibaseServiceImpl implements LiquibaseService {
     @Override
     public void runLiquibase(final String changelog, ResourceAccessor resourceAccessor, final Connection connection, String... liquibaseContexts) throws LiquibaseServiceException {
         try {
+            String commaSeparatedLiquibaseContexts = null;
+            if (liquibaseContexts != null && liquibaseContexts.length > 0) {
+                commaSeparatedLiquibaseContexts = StringUtils.join(liquibaseContexts, ',');
+            }
+
             final Database liquibaseDatabase = newLiquibaseDatabase(connection);
 
             final liquibase.resource.ResourceAccessor liquibaseResourceAccessor = resolveAccessor(resourceAccessor);
@@ -58,7 +64,7 @@ public class LiquibaseServiceImpl implements LiquibaseService {
 
             // TODO Prüfen ob man Liquibase nicht refactoren kann und von der Changlog eingabe Ressource abstrahieren könnte damit der resourceAccessor Parameter entfällt
 
-            liquibase.update(null);
+            liquibase.update(commaSeparatedLiquibaseContexts);
         } catch (LiquibaseException e) {
             throw new LiquibaseServiceException(e);
         }
