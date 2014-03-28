@@ -38,6 +38,10 @@
   terms of the Apache 2.0 license.
   Please refer to: http://logging.apache.org/log4j/1.2/license.html
 
+* Hibernate (http://www.hibernate.org/) is licensed under the terms of the
+  GNU Lesser General Public License, Version 2.1.
+  Please refer to: http://www.hibernate.org/license
+
 * The HyperSQL (http://hsqldb.org/) is licensed under it's own BSD based
   license.
   Please refer to: http://hsqldb.org/web/hsqlLicense.html
